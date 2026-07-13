@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="toast-container" id="toastContainer"></div>
+    <header>
+        <div class="container nav">
+            <a href="index.html" class="logo"><i class="fas fa-crown"></i><span>EricMuli</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="dashboard.html" class="active" data-page="dashboard">Dashboard</a></li>
+                <li><a href="dashboard.html#beliefs" data-page="beliefs">Beliefs</a></li>
+                <li><a href="dashboard.html#ai" data-page="ai-assistant">AI Assistant</a></li>
+                <li id="adminNavLink" class="hidden"><a href="admin.html" data-page="admin">Admin</a></li>
+                <li><a href="login.html" id="loginNavBtn" class="btn btn-sm">Sign In</a></li>
+                <li><a href="#" id="logoutNavBtn" class="btn btn-sm btn-outline hidden">Logout</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <section id="pageDashboard" style="padding-top:120px;">
+        <div class="container">
+            <div class="dash-header">
+                <div>
+                    <h2>👋 Welcome, <span id="dashUserName">Guest</span></h2>
+                    <p style="color:var(--text-muted);" id="dashUserRole">Role: viewer</p>
+                </div>
+                <div class="user-badge">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div id="dashBadgeName">Guest</div>
+                        <div class="role" id="dashBadgeRole">viewer</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-tabs">
+                <button class="active" data-tab="media">📁 Media</button>
+                <button data-tab="beliefs">📖 Beliefs</button>
+                <button data-tab="ai">🤖 AI Assistant</button>
+                <button data-tab="profile">⚙️ Profile</button>
+                <button id="adminTabBtn" class="hidden" data-tab="admin-upload">⬆ Admin</button>
+            </div>
+
+            <!-- Media Tab -->
+            <div class="dash-panel active" id="tabMedia">
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+                    <button class="btn btn-sm" id="mediaFilterAll">All</button>
+                    <button class="btn btn-sm btn-outline" id="mediaFilterPhotos">Photos</button>
+                    <button class="btn btn-sm btn-outline" id="mediaFilterVideos">Videos</button>
+                    <button class="btn btn-sm btn-outline" id="mediaFilterDocs">Documents</button>
+                </div>
+                <div class="media-grid" id="mediaGrid"></div>
+                <p style="color:var(--text-muted);margin-top:16px;font-size:0.9rem;">
+                    <i class="fas fa-info-circle"></i> Click a resource to view online. Download requires payment.
+                </p>
+            </div>
+
+            <!-- Beliefs Tab -->
+            <div class="dash-panel" id="tabBeliefs">
+                <div class="belief-tabs">
+                    <button class="active" data-belief="bible">✝ Bible</button>
+                    <button data-belief="quran">☪ Quran</button>
+                    <button data-belief="hindu">🕉 Hindu</button>
+                    <button data-belief="buddhism">☸ Buddhism</button>
+                    <button data-belief="other">🌍 Other</button>
+                </div>
+                <div id="beliefContent">
+                    <div class="verse-card">
+                        <div class="verse-text" id="beliefVerseText">"Faith is the substance of things hoped for, the evidence of things not seen."</div>
+                        <div class="verse-ref">— <strong id="beliefVerseRef">Hebrews 11:1</strong> · Bible</div>
+                    </div>
+                    <div class="ai-gen-box">
+                        <h4><i class="fas fa-wand-magic-sparkles" style="color:var(--secondary);"></i> AI Verse Generator</h4>
+                        <textarea id="beliefPrompt" placeholder="Describe a theme (e.g., 'hope', 'peace', 'love')..."></textarea>
+                        <div class="row">
+                            <button class="btn btn-sm" id="genBeliefBtn"><i class="fas fa-cog"></i> Generate</button>
+                            <button class="btn btn-sm btn-outline" id="randomBeliefBtn"><i class="fas fa-shuffle"></i> Random</button>
+                        </div>
+                        <div id="beliefGenResult" style="margin-top:12px;color:var(--text-muted);font-style:italic;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Tab -->
+            <div class="dash-panel" id="tabAI">
+                <h4><i class="fas fa-robot" style="color:var(--primary-light);"></i> Multimedia AI Assistant</h4>
+                <p style="color:var(--text-muted);margin-bottom:16px;">Ask about photos, videos, documents, books, research, or any topic.</p>
+                <div class="chat-box">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-msg ai">👋 Hello! I'm your AI assistant. Ask me anything about media, research, books, or beliefs.</div>
+                    </div>
+                    <div class="chat-input-row">
+                        <input type="text" id="chatInput" placeholder="Ask me anything...">
+                        <button class="btn btn-sm" id="chatSendBtn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div class="dash-panel" id="tabProfile">
+                <div style="max-width:480px;">
+                    <h4>Account Settings</h4>
+                    <label>Username</label>
+                    <input type="text" id="profileUsername" disabled style="opacity:0.6;">
+                    <label>Email</label>
+                    <input type="email" id="profileEmail" disabled style="opacity:0.6;">
+                    <label>Role</label>
+                    <input type="text" id="profileRole" disabled style="opacity:0.6;">
+                    <hr style="border-color:var(--border);margin:20px 0;">
+                    <h5>Change Password</h5>
+                    <label>Current Password</label>
+                    <input type="password" id="profileCurrPwd" placeholder="Current password">
+                    <label>New Password</label>
+                    <input type="password" id="profileNewPwd" placeholder="New password">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="profileConfirmPwd" placeholder="Confirm new password">
+                    <button class="btn" id="profileChangePwdBtn"><i class="fas fa-key"></i> Update Password</button>
+                    <hr style="border-color:var(--border);margin:20px 0;">
+                    <h5>Language</h5>
+                    <select id="profileLang">
+                        <option value="en">English (Default)</option>
+                        <option value="sw">Swahili</option>
+                        <option value="fr">Français</option>
+                        <option value="es">Español</option>
+                        <option value="ar">العربية</option>
+                    </select>
+                    <button class="btn btn-sm btn-outline" id="profileLangBtn" style="margin-top:10px;"><i class="fas fa-globe"></i> Apply Language</button>
+                </div>
+            </div>
+
+            <!-- Admin Upload Tab -->
+            <div class="dash-panel" id="tabAdminUpload">
+                <h4><i class="fas fa-upload" style="color:var(--secondary);"></i> Admin — Upload Resources</h4>
+                <p style="color:var(--text-muted);margin-bottom:16px;">Only the admin (Eric Muli) can upload.</p>
+                <div style="max-width:560px;">
+                    <label>Category</label>
+                    <select id="uploadCategory">
+                        <option value="photo">Photo</option>
+                        <option value="video">Video</option>
+                        <option value="document">Document</option>
+                    </select>
+                    <label>Title</label>
+                    <input type="text" id="uploadTitle" placeholder="Resource title">
+                    <label>Description</label>
+                    <input type="text" id="uploadDesc" placeholder="Short description">
+                    <label>File URL</label>
+                    <input type="text" id="uploadUrl" placeholder="https://example.com/file.jpg">
+                    <button class="btn" id="uploadResourceBtn" style="margin-top:16px;width:100%;"><i class="fas fa-check"></i> Upload Resource</button>
+                </div>
+                <div style="margin-top:24px;">
+                    <h5>📊 WhatsApp Auto-Reply Status</h5>
+                    <div class="wa-status">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>+245713868382 · +254753051262</span>
+                        <span class="offline">(AI auto-reply active when offline)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by <strong>Eric Muli</strong> · Dedicated to <strong>Faith Kaluki</strong></p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

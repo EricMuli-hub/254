@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric Muli Makau</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <header>
+        <div class="container nav">
+            <a href="index.html" class="logo" id="logoLink"><i class="fas fa-crown"></i><span>EricMuli</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active" data-page="home">Home</a></li>
+                <li><a href="dashboard.html" data-page="dashboard">Dashboard</a></li>
+                <li><a href="dashboard.html#beliefs" data-page="beliefs">Beliefs</a></li>
+                <li><a href="dashboard.html#ai" data-page="ai-assistant">AI Assistant</a></li>
+                <li id="adminNavLink" class="hidden"><a href="admin.html" data-page="admin">Admin</a></li>
+                <li><a href="login.html" id="loginNavBtn" class="btn btn-sm">Sign In</a></li>
+                <li><a href="#" id="logoutNavBtn" class="btn btn-sm btn-outline hidden">Logout</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main id="pageHome">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge" style="margin-bottom:16px;">✦ Welcome</div>
+                    <h1>I'm <span>Eric Muli</span></h1>
+                    <p>Chess · Coding · Nature walks · Writing.<br/>Dedicated to my mother, <strong>Faith Kaluki</strong>.</p>
+                    <div class="hero-buttons">
+                        <a href="dashboard.html" class="btn"><i class="fas fa-rocket"></i> Explore</a>
+                        <a href="register.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Join</a>
+                    </div>
+                    <div class="hero-dedication">
+                        <i class="fas fa-heart"></i> Dedicated to <strong>Faith Kaluki</strong> — my greatest supporter ❤️
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="img-wrap">
+                        <!-- Replace src with your actual image path -->
+                        <img src="assets/eric.jpg" alt="Eric Muli" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user-circle placeholder-icon\'></i>';">
+                    </div>
+                    <div class="img-row">
+                        <div class="img-wrap">
+                            <img src="assets/photo2.png" alt="photo2" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-image placeholder-icon\'></i>';">
+                        </div>
+                        <div class="img-wrap" style="background:var(--bg-card);display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                            <i class="fas fa-chess-queen" style="font-size:2.6rem;color:var(--secondary);opacity:0.6;"></i>
+                            <span style="font-size:0.6rem;color:var(--text-muted);">♛ Chess</span>
+                        </div>
+                        <div class="img-wrap" style="background:var(--bg-card);display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                            <i class="fas fa-code" style="font-size:2.6rem;color:var(--primary-light);opacity:0.6;"></i>
+                            <span style="font-size:0.6rem;color:var(--text-muted);">&lt;/&gt; Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="alt">
+            <div class="container">
+                <div style="text-align:center;margin-bottom:32px;">
+                    <h2 class="section-title">Everything <span>in One Place</span></h2>
+                    <p class="section-sub" style="margin:0 auto;">Photos · Videos · Documents · Beliefs · AI · and more</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card"><i class="fas fa-images"></i><h4>Photo Album</h4><p>Memories captured</p></div>
+                    <div class="feature-card"><i class="fas fa-video"></i><h4>Videos</h4><p>Moments in motion</p></div>
+                    <div class="feature-card"><i class="fas fa-file-alt"></i><h4>Documents</h4><p>Knowledge & writing</p></div>
+                    <div class="feature-card"><i class="fas fa-book-open"></i><h4>Beliefs</h4><p>Bible · Quran · Hindu & more</p></div>
+                    <div class="feature-card"><i class="fas fa-robot"></i><h4>AI Assistant</h4><p>Research & answers</p></div>
+                    <div class="feature-card"><i class="fab fa-whatsapp"></i><h4>WhatsApp Auto</h4><p>AI replies when I'm away</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div style="text-align:center;margin-bottom:24px;">
+                    <h2 class="section-title">Daily <span>Verse</span></h2>
+                    <p class="section-sub" style="margin:0 auto;">Inspiring words every day</p>
+                </div>
+                <div class="verse-card" id="dailyVersePreview">
+                    <div class="verse-text">"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future."</div>
+                    <div class="verse-ref">— <strong>Jeremiah 29:11</strong> · Bible</div>
+                </div>
+                <div style="text-align:center;margin-top:12px;">
+                    <span class="badge" style="background:var(--secondary);">✨ Sign in to see personalized verses</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by <strong>Eric Muli</strong> · Dedicated to <strong>Faith Kaluki</strong><br/>
+            <span style="font-size:0.8rem;color:var(--text-muted);"><i class="fas fa-crown"></i> Admin: Eric Muli · All resources uploaded by admin only</span></p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
